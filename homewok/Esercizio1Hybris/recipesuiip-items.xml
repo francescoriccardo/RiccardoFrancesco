@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ~ [y] hybris Platform ~ ~ Copyright (c) 2000-2016 SAP SE ~ All rights 
+	reserved. ~ ~ This software is the confidential and proprietary information 
+	of SAP ~ Hybris ("Confidential Information"). You shall not disclose such 
+	~ Confidential Information and shall use it only in accordance with the ~ 
+	terms of the license agreement you entered into with SAP Hybris. -->
+<!-- ATTENTION: This is just an example file. You have to edit it according 
+	to your needs. -->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<!--Relazione n-n tra ricetta ed ingrediente -->
+	<reletions>
+		<relation localized="false" code="doseRelation">
+			<deployment table="dose" typecode="10500" />
+			<sourceElement qualifier="ricetta" type="Ricetta"
+				cardinality="many">
+				<modifiers optional="false" />
+			</sourceElement>
+			<targetElement qualifier="ingrediente" type="Ingrediente"
+				cardinality="many">
+				<modifiers optional="false" />
+			</targetElement>
+		</relation>
+	</reletions>
+	<itemtypes code="ricetta">
+		<attributes>
+			<attribute qualifer="id" type="java.lang.Integer">
+				<modifiers optional="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifer="nome" type="java.lang.String">
+				<modifiers optional="true" />
+			</attribute>
+			<attribute qualifer="tempoCottura" type="java.lang.Integer">
+			</attribute>
+			<attribute qualifer="portata" type="java.lang.String"></attribute>
+			<attribute qualifer="calorie" type="java.lang.Integer"></attribute>
+			<attribute qualifer="paeseProvenienza" type="java.lang.String"></attribute>
+		</attributes>
+	</itemtypes>
+	<itemtypes code="ingrediente">
+		<attributes>
+			<attribute qualifer="nome" type="java.lang.String">
+				<modifiers optional="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifer="provenienza" type="java.lang.String">
+				<modifiers optional="true" />
+			</attribute>
+			<attribute qualifer="tipo" type="java.lang.String"></attribute>
+		</attributes>
+	</itemtypes>
+	<itemtypes code="dose">
+		<attributes>
+			<attribute qualifer="quantita" type="java.lang.String">
+				<modifiers optional="true" />
+			</attribute>
+		</attributes>
+		<indexes>
+			<index name="indici" unique="true">
+				<key attribute="source"></key>
+				<key attribute="target"></key>
+			</index>
+		</indexes>
+	</itemtypes>
+</items>
