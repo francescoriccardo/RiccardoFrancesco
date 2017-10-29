@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	
+	<enumtypes>
+		<enumtype code="CyclistResultSex" autocreate="true" generate="true">
+			<value code="Male"/>
+			<value code="Woman"/>
+		</enumtype>
+		<enumtype code="StageRankingResultState" autocreate="true" generate="true">
+			<value code="retired"/>
+			<value code="partecipant"/>
+		</enumtype>
+	</enumtypes>
+
+	<relations>
+		<relation code="Stage2StageRanKingRelation" localized="false" autocreate="true" generate="true">
+			<sourceElement qualifier="stage" type="Stage" cardinality="one" />
+			<targetElement qualifier="stagerankings" type="StageRanKing" cardinality="many" />
+		</relation>
+		<relation code="StageRace2StageRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="StageRace2StageRelation" typecode='20040' />
+			<sourceElement qualifier="stageraces" type="StageRace" cardinality="many">
+				<modifiers read="true" write="true" search="true" />
+			</sourceElement>
+			<targetElement qualifier="stages" type="Stage" cardinality="many">
+				<modifiers read="true" write="true" search="true" />
+			</targetElement>
+		</relation>
+	</relations>
+
+	<itemtypes>
+	
+	<itemtype code="Cyclist" autocreate="true" generate="true">
+		<deployment table="Cyclist" typecode="20000"></deployment>
+		<attributes>
+			<attribute qualifier="cf" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" unique="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="name" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="surname" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="date" type="java.util.Date">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="sex" type="CyclistResultSex">
+				<modifiers read="true" write="true" search="true" optional="true" />
+				<persistence type="property" />
+			</attribute>
+		</attributes>
+	</itemtype>
+
+	<itemtype code="Stage" autocreate="true" generate="true">
+		<deployment table="Stage" typecode="20010" />
+		<attributes>
+			<attribute qualifier="stageName" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" unique="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="start" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="finish" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="distance" type="java.lang.Integer">
+				<modifiers read="true" write="true" search="true" optional="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="description" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="true" />
+				<persistence type="property">
+					<columntype>
+						<value>HYBRIS.LONG_STRING</value>
+					</columntype>
+				</persistence>
+			</attribute>
+	        <attribute qualifier="date" type="java.util.Date">
+		        <modifiers read="true" write="true" search="true" optional="false" />
+		        <persistence type="property" />
+	        </attribute>
+		</attributes>
+	</itemtype>
+
+	<itemtype code="StageRace" autocreate="true" generate="true">
+		<deployment table="StageRace" typecode="20020" />
+		<attributes>
+			<attribute qualifier="idStageRace" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" unique="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="name" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="year" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+		</attributes>
+	</itemtype>
+
+	<itemtype code="StageRanKing" autocreate="true" generate="true">
+		<deployment table="StageRanKing" typecode="20030" />
+		<attributes>
+			<attribute qualifier="id" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" unique="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="position" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="time" type="java.lang.String">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="state" type="StageRankingResultState">
+				<modifiers read="true" write="true" search="true" optional="true" />
+				<persistence type="property" />
+			</attribute>
+			<attribute qualifier="cyclist" type="Cyclist">
+				<modifiers read="true" write="true" search="true" optional="false" />
+				<persistence type="property" />
+			</attribute>
+		</attributes>
+	</itemtype>
+	</itemtypes>
+</items>

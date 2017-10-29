@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+    <bean id="stageraceuiipSystemSetup" class="my.stageraceuiip.setup.StageraceuiipSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="stageraceuiipService"/>
+    </bean>
+
+    <bean id="stageraceuiipService" class="my.stageraceuiip.service.impl.DefaultStageraceuiipService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <bean id="defaultCyclistDao" class="my.stageraceuiip.cyclist.com.dao.impl.DefaultCyclistDao" parent="abstractItemDao"/>
+    <bean id="defaultCyclistService" class="my.stageraceuiip.cyclist.com.service.impl.DefaultCyclistService">
+			<property name="cyclistDao" ref="defaultCyclistDao"/>
+	</bean>
+    
+    <bean id="defaultStageDao" class="my.stagereaceuiip.stage.com.dao.impl.DefaultStageDao" parent="abstractItemDao"/>
+    <bean id="defaultStageService" class="my.stageraceuiip.stage.com.service.impl.DefaultStageService">
+			<property name="stageDao" ref="defaultStageDao"/>
+	</bean>
+    
+    <bean id="defaultStageRaceDao" class="my.stageraceuiip.stagerace.com.dao.impl.DefaultStageRaceDao" parent="abstractItemDao"/>
+    <bean id="defaultStageRaceService" class="my.stageraceuiip.stagerace.com.service.impl.DefaultStageRaceService">
+			<property name="stageraceDao" ref="defaultStageRaceDao"/>
+	</bean>
+    
+    <bean id="defaultStageRanKingDao" class="my.stageraceuiip.stageranking.com.dao.impl.DefaultStageRanKingDao" parent="abstractItemDao"/>
+    <bean id="defaultStageRanKingService" class="my.stageraceuiip.stageranking.com.service.impl.DefaultStageRanKingService">
+			<property name="stagerankingDao" ref="defaultStageRanKingDao"/>
+	</bean>
+    
+    <bean id="myInitInterceptor" class="my.stageraceuiip.interceptor.com.imp.MyInitInterception"/>
+	<bean id="myInitMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping ">
+		<property name="interceptor" ref="myInitInterceptor"/>
+		<property name="typeCode" value="Stage"/>
+		<property name="order" value="1"/>
+	</bean>
+			
+</beans>

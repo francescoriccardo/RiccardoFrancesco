@@ -1,0 +1,19 @@
+INSERT_UPDATE Cyclist; cf[unique=true];name;surname;date[dateformat='dd/MM/yyyy'];sex;
+		             ;a1asd-5asda;Franceso;Riccardo;05/07/1988;;
+		             ;5451a-dsae4;Francesco;Palmieri;21/07/1985;;
+					 ;5a4sd-asda1;Gianpaolo;Perrella;20/09/1984;;
+					 
+INSERT_UPDATE Stage;stageName[unique=true];start;finish;distance;description;date[dateformat='dd/MM/yyyy']
+				   ;PordenoneAsiago2017;Sacile;Gallio;190;Tappa pianeggiante che parte da Pordenone (già quattro partenze e due arrivi nella sua storia) e che per 100 km si snoda attraverso le pendici delle Prealpi trevigiane (GPM sul Muro di Ca’ del Poggio). Dopo il TV di Feltre si affronta la salita al Monte Grappa (24 km di cui si ricorda la conquista della cima da parte di Nairo Quintana nel 2014 e Ivan Basso nel 2010) su strada a carreggiata stretta. Prima parte ripida con pendenze elevate seguita da una parte meno impegnativa con diverse contropendenze prima del GPM. Discesa molto lunga e molto impegnativa (26 km) con numerosi tornanti su strada di media larghezza. Si affronta quindi l’ultima salita a Foza (GPM inedito per il Giro con salita regolare al 7% con numerosi tornanti).   Ultimi 15 km molto ondulati e ultimi 5 km dopo Gallio in leggera discesa fino ai 400 m. Strade ampie e ben pavimentate fuori degli abitati. Entrati in Asiago si incontrano rotatorie e spartitraffico. Ultima curva ai 450 m e rettilineo in leggera salita fino all’arrivo su asfalto largo 7 m;27/05/2017
+				   ;ReggioEmiliaTortona2017;Cavriago;PonteCurone;200;Tappa assolutamente piatta. Si attraversa tutta la pianura Padana e nel finale dopo Casteggio si segue il tradizionale percorso della Milano-Sanremo. Si parte da Reggio Emilia in direzione di Cavriago e attraversato Montecchio Emilia si rientra nella statale che si segue fino a Piacenza con un percorso sempre rettilineo. Dopo Piacenza si percorre praticamente fino all’arrivo la ex statale padana inferiore. Si attraversa tutta una serie di citta toccate da molte tappe del Giro e nel finale dalla Milano Sanremo. L'arrivo e a Tortona, che finora ha visto solo un arrivo di tappa, nel 1989. Ultimi chilometri praticamente sempre rettilinei intervallati da alcune rotatorie;19/05/2017
+				   ;MadalloniMercogliano2016;Maddaloni;Montevergine;110;La tappa Maddaloni-Mercogliano di 110 km, presenta due Gpm  di seconda categoria: il primo Serra della Strada, lungo 9,5 km, inizierà a 55 km dall’arrivo, il secondo Montevergine di Mercogliano, lungo 7,5 km, porterà i corridori all’arrivo. Montevergine di Mercogliano e una salita di 7,5 km con pendenza media del 5,3% e una pendenza massima del 12%;13/06/2016
+
+INSERT_UPDATE StageRace;idStageRace[unique=true];name;year
+                       ;1;GiroItalia;2016
+                       ;2;GiroItalia;2017
+
+INSERT_UPDATE StageRanKing;id[unique=true];position;time;state;cyclist(cf);stage(stageName)
+					      ;1;primo;900; ;5451a-dsae4;PordenoneAsiago2017
+					      ;2;secondo;885; ;5a4sd-asda1;PordenoneAsiago2017
+					      ;3;ritiro;0; ;a1asd-5asda;ReggioEmiliaTortona2017
+					      ;4;primo;740; ;a1asd-5asda;MadalloniMercogliano2016
