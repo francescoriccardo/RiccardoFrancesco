@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ~ [y] hybris Platform ~ ~ Copyright (c) 2000-2016 SAP SE ~ All rights 
+	reserved. ~ ~ This software is the confidential and proprietary information 
+	of SAP ~ Hybris ("Confidential Information"). You shall not disclose such 
+	~ Confidential Information and shall use it only in accordance with the ~ 
+	terms of the license agreement you entered into with SAP Hybris. -->
+<!-- ATTENTION: This is just an example file. You have to edit it according 
+	to your needs. -->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<enumtypes>
+	  <!-- enumtype for sex of Person -->
+		<enumtype code="sexType" autocreate="true" generate="true" dynamic="false">
+			<value code="man"></value>
+			<value code="woman"></value>
+		</enumtype>
+	</enumtypes>
+	
+	<relations>
+	
+	<!-- relation 1-n for Hospital and Department -->
+	<relation localized="false" code="Hospital2DepartmentRelation">
+		<sourceElement type="Hospital" qualifier="hospital" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Department" qualifier="departments" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+     <!-- relation 1-n for Department and Medical-->
+	<relation localized="false" code="Department2MedicalRelation">
+		<sourceElement type="Department" qualifier="department" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Medical" qualifier="medicals" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relation 1-n for Department and Recovery-->
+	<relation localized="false" code="Department2RecoveryRelation">
+		<sourceElement type="Department" qualifier="department" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Recovery" qualifier="recoverys" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relation 1-n for Medical and MedicalExamination-->
+	<relation localized="false" code="Medical2MedicalExaminationRelation">
+		<sourceElement type="Medical" qualifier="medical" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="MedicalExamination" qualifier="medicalExaminations" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relation 1-n for Recovery and MedicalExamination-->
+	<relation localized="false" code="Recovery2MedicalExaminationRelation">
+		<sourceElement type="Recovery" qualifier="recovery" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="MedicalExamination" qualifier="medicalExaminations" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relation 1-n for Patient and Recovery-->
+	<relation localized="false" code="Patient2RecoveryRelation">
+		<sourceElement type="Patient" qualifier="patient" cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Recovery" qualifier="recoverys" cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	</relations>
+
+	<itemtypes>
+	
+		<!-- itemtype of Person table -->
+		
+		<itemtype code="Person" autocreate="true" generate="true">
+			<deployment table="Person" typecode="15000" />
+			<attributes>
+				<attribute qualifier="fiscalCode" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="surname" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="birthDate" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="birtplace" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="sex" type="sexType">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<!-- itemtype of Patient table -->
+		
+		<itemtype code="Patient" extends="Person" autocreate="true" generate="true">
+			<deployment table="Patient" typecode="15001" />
+		</itemtype>
+		
+	    <!-- itemtype of Medical table -->
+		
+		<itemtype code="Medical" extends="Person" autocreate="true" generate="true">
+			<deployment table="Medical" typecode="15002" />
+			<attributes>
+				<attribute qualifier="medicalNumber" type="java.lang.String">
+					<modifiers optional="false" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		 <!-- itemtype of Hospital table -->
+		
+		<itemtype code="Hospital" autocreate="true" generate="true">
+			<deployment table="Hosptial" typecode="15003" />
+			<attributes>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="address" type="java.lang.String">
+					<modifiers optional="false" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="telephone" type="java.lang.String">
+					<modifiers optional="false" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+	    <!-- itemtype of department table -->
+		
+		<itemtype code="Department" autocreate="true" generate="true">
+			<deployment table="Department" typecode="15004" />
+			<attributes>
+				<attribute qualifier="departmentName" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<!-- itemtype of recovery table -->
+		
+		<itemtype code="Recovery" autocreate="true" generate="true">
+			<deployment table="Recovery" typecode="15005" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="beginDate" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="endDate" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="recoveryDays" type="java.lang.Integer">
+					<modifiers optional="true" unique="false" />
+					<persistence type="dynamic" attributeHandler="recoveryDaysHandler">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<!-- itemtype of medicalExamination table -->
+		
+		<itemtype code="MedicalExamination" autocreate="true" generate="true">
+			<deployment table="MedicalExamination" typecode="15006" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="date" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="result" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>			
+	</itemtypes>
+</items>

@@ -1,0 +1,31 @@
+INSERT_UPDATE Patient; fiscalCode[unique=true]; name;surname;birthdate[dateformat='dd/MM/yyyy'];birtplace
+                    ;rccfbc67asd323;Riccardo;Rossi;08/08/1988;Roma
+                    ;rccfnc23asdasf21;Francesco;Riccio;23/06/1990;Avellino
+                    ;asddfvnvnj3wed34;Antonia;Verdi;3/09/2000;Milano
+                    
+INSERT_UPDATE Hospital;name[unique=true];address;telephone
+                      ;AvellinoMoscati;Via Nazionale 13;082543215
+                    
+INSERT_UPDATE Department;departmentName[unique=true];hospital(name)
+                        ;ortopedia;AvellinoMoscati
+                        ;rianimazione;AvellinoMoscati
+                        ;terapiadeldolore;AvellinoMoscati  
+                                 
+INSERT_UPDATE Medical;fiscalCode[unique=true]; name;surname;birthdate[dateformat='dd/MM/yyyy'];birtplace;medicalNumber;department(departmentName)
+					  ;rccfnc88afr323;Francesco;Riccardo;05/07/1988;Milano;AQASWA21;ortopedia
+					  ;antdecf4324etd;Antonoio;Decuntis;15/12/1985;Torino;ZSTAJ291;rianimazione
+					  ;fgrtsaf65asddf;Mario;Sapo;23/11/1980;Genova;AZZX4T21;terapiadeldolore
+					
+INSERT_UPDATE Recovery;id[unique=true];begindate[dateformat='dd/MM/yyyy'];enddate[dateformat='dd/MM/yyyy'];recoveryDays;patient(fiscalCode);department(departmentName)
+                      ;Ric1;01/07/2017;05/07/2017;4;rccfbc67asd323;rianimazione
+                      ;Ric2;21/08/2014;22/08/2014;1;rccfbc67asd323;ortopedia
+                      ;Ric3;21/09/2014;21/09/2014;0;rccfbc67asd323;ortopedia
+                      ;Ric4;03/11/2017;;;rccfnc23asdasf21;terapiadeldolore
+                      
+INSERT_UPDATE MedicalExamination;id[unique=true];date[dateformat='dd/MM/yyyy'];name;result;medical(fiscalCode);recovery(id)
+							    ;med1;01/07/2017;controllo generale;POSITIVE;antdecf4324etd;Ric1
+                                ;med2;02/07/2017;soministazione farmaci;POSITIVE;antdecf4324etd;Ric1
+                                ;med3;05/07/2017;controllo generale con rilascio;POSITIVE;antdecf4324etd;Ric1
+                                ;med4;21/08/2014;applicazione gesso piede dx;POSITIVE;rccfnc88afr323;Ric2
+                                ;med5;21/09/2014;rimozione gesso piede dx;POSITIVE;rccfnc88afr323;Ric3
+                                ;med6;03/11/2017;inzio terapia per sciattica;;fgrtsaf65asddf;Ric4

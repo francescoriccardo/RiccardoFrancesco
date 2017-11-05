@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+    <bean id="recoverypatientcoreSystemSetup" class="my.recoverypatientcore.setup.RecoverypatientcoreSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="recoverypatientcoreService"/>
+    </bean>
+
+    <bean id="recoverypatientcoreService" class="my.recoverypatientcore.service.impl.DefaultRecoverypatientcoreService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <!-- Bean for attribute dynamic recoveryDaysHandler to ItemType Recovery -->
+    <bean id="recoveryDaysHandler" class="my.recoverypatientcore.handler.impl.RecoveryDaysHandler"/>
+    
+    <bean id="defaultMedicalExaminationDao" class="my.recoverypatientcore.medicalExamination.dao.impl.DefaultMedicalExaminationDao" parent="abstractItemDao"/>
+	<bean id="defaultMedicalExaminationService" class="my.recoverypatientcore.medicalExamination.service.impl.DefaultMedicalExaminationService">
+		<property name="medicalExaminatonDao" ref="defaultMedicalExaminationDao"/>
+	</bean>
+	
+	<!-- Bean for Prepare Interceptor to itemtype medicalExamination  -->
+    <bean id="positiveMedicalExaminationPrepareInterceptor" class="my.recoverypatientcore.interceptor.impl.PositiveMedicalExaminationPrepareInterceptor">
+		<property name="medicalExaminationService" ref="defaultMedicalExaminationService"/>
+	</bean>
+	<bean id="positiveMedicalExaminationPrepareMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="positiveMedicalExaminationPrepareInterceptor"/>
+		<property name="typeCode" value="MedicalExamination"/>
+	</bean>
+			
+</beans>
