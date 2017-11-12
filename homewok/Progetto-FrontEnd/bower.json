@@ -1,0 +1,8 @@
+{
+  "name": "CantinaBuonVino",
+  "description": "website",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "carousel": "^1.2.2"
+  }
+}

@@ -1,0 +1,20 @@
+h3
+{
+  font-style: italic;
+}
+.jumbotron
+{
+  height: 300px;
+  background-color: #956536;
+  margin-bottom: 0;
+}
+footer
+{
+ background-color: #956536;
+ width: 100%;
+}
+.icon
+{
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,71 @@
+@media (min-width: 700px)
+{
+  #menu
+  {
+    display: none;
+  }
+}
+.label
+{
+  font-style: italic;
+  color: #956536;
+}
+
+.nav-collapse,
+.nav-collapse * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.nav-collapse,
+.nav-collapse ul {
+  list-style: none;
+  width: 100%;
+  float: left;
+}
+
+.nav-collapse li {
+  float: left;
+  width: 100%;
+}
+
+@media screen and (min-width: 40em) {
+  .nav-collapse li {
+    width: 33.33%;
+    *width: 24.9%; /* IE7 Hack */
+    _width: 19%; /* IE6 Hack */
+  }
+}
+
+.nav-collapse a {
+  color: #956536;
+  text-decoration: none;
+  width: 100%;
+  background: #222222;
+  border-bottom: 1px solid white;
+  padding: 0.7em 1em;
+  float: left;
+}
+
+@media screen and (min-width: 40em) {
+  .nav-collapse a {
+    margin: 0;
+    padding: 1em;
+    float: left;
+    text-align: center;
+    border-bottom: 0;
+    border-right: 1px solid white;
+  }
+}
+
+.nav-collapse ul ul a {
+  background: #ca3716;
+  padding-left: 2em;
+}
+
+@media screen and (min-width: 40em) {
+  .nav-collapse ul ul a {
+    display: none;
+  }
+}
